@@ -38,6 +38,24 @@ angular.module('mynotes.notestore', []).factory('NoteStore', function () {
                     return;
                 }
             }
+        },
+
+        //Move the item in the list of notes
+        move: function (note, fromIndex, toIndex) {
+            notes.splice(fromIndex, 1);
+            notes.splice(toIndex, 0, note);
+            persist();
+        },
+
+        //Remove the note
+        remove: function (noteId) {
+            for (var i = 0; i < notes.length; i++) {
+                if (notes[i].id === noteId) {
+                    notes.splice(i, 1);
+                    persist();
+                    return;
+                }
+            }
         }
     }
 
